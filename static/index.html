@@ -1,5 +1,61 @@
 <html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>tekuto.net</title>
+        <link rel="stylesheet" href="style.css" />
+        <script type="text/javascript">
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', 'UA-23511137-1']);
+            _gaq.push(['_setDomainName', '.tekuto.net']);
+            _gaq.push(['_trackPageview']);
+
+            (function() {
+                var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+            })();
+        </script>
+    </head>
     <body>
-        <p>てすと</p>
+        <h1>tekuto.net</h1>
+        <div>
+            <p>メール:g.tekuto@gmail.com</p>
+            <p><a href="http://twitter.com/tekuto" target="_blank">twitter</a></p>
+        </div>
+<!--テンプレート
+        <hr />
+        <div>
+            <h2>YYYY/MM/DD hh:mm</h2>
+            内容
+        </div>
+-->
+        <div>
+            <hr />
+            <h2>2013/06/07 00:18</h2>
+            <p>おはようございます。</p>
+            <p>＊</p>
+            <p>諸事情によりサーバを移転しました。現在はサーバというか、<a href="https://developers.google.com/appengine/?hl=ja" target="_blank">Google App Engine</a>の1アプリとしてサイトを稼働させています。</p>
+            <p>＊</p>
+            <p>ある日、レンタルスペースに配置したMovable Typeにログインしても、ページ遷移したらすぐログアウトしちゃうようになってて、困っていた。</p>
+            <p>原因はDBの容量がいっぱいになっちゃてて、セッション情報すら持てないような状況だった、ってことなんだけど。</p>
+            <p>サイトのコントロールパネルから、DBの全テーブルに最適化をかければいくらか容量空くだろう、と思って最適化しようとするも、insertできません＞＜権限ないんで＞＜とかわけのわからんこと言われるし。</p>
+            <p>deleteは通るし、とりあえずスパムコメントのレコードだけでも消しておくか、なんか変わるかもしれんし、とかやって放置していた。</p>
+            <p>＊</p>
+            <p>で、今日になって、dpにまた1つ機能ができたので、それについて記事書くかーとMovable Typeにログインしようとしたら404。サイトのコントロールパネルにログインしたら、アカウントはブロックされていますだって。</p>
+            <p>私だってなんとかしたかったがどうしようもなかったからしょうがないじゃないの。どうすりゃよかったと言うのだ。問い合わせ？英語むり。</p>
+            <p>そんなわけで、以前から考えていたGoogle App Engineへの移転に踏み切ったわけです。DBの容量10MBとか最初から無茶だったんだ。アカウントはブロックされていますのページに可能な対応と思われることが色々書かれていたが英語とか読めねぇしもうたくさんだ。海外の鯖なせいかレスポンス性能もよろしくないというか稀によく落ちてるし。</p>
+            <p>Google App EngineはGoogle先生が運営してるんで、レスポンス性能は前よりずっといいと思う、多分。稀によく落ちることもないんじゃないかな、多分。</p>
+            <p>＊</p>
+            <p>Google App Engineに移転したといっても、現時点では<a href="https://bitbucket.org/tekuto/tekuto-net/src" target="_blank">見ての通り</a>タグ打ちの静的なページだけ。staticの中ね。</p>
+            <p>そのうち、タグ打ちしなくてもブラウザ上から投稿だとか、投稿に対してコメントだとか、そういうのできるようにする予定は一応あるんで。</p>
+            <p>でもめんどいんでしばらくお待ち下さいと思ったが、dpがちょうどいいところだし、進めてみようかなぁ。</p>
+            <p>飽きたらすぐdpの開発に戻るが。</p>
+            <p>＊</p>
+            <p>とまぁ、しばらくはこんな感じで、昔みたいな1ページ運用になるのでよろしくお願いします。</p>
+        </div>
+        <div id="for-nostylesheet">
+            <hr />
+            <img src="uni.png" />
+        </div>
     </body>
 </html>
