@@ -36,6 +36,28 @@
 -->
         <hr />
         <div>
+            <h2>2013/07/19 05:35</h2>
+            <p>pulseaudioいじくってた。</p>
+            <p>＊</p>
+            <p>ストリームAPIの使い方がようやく分かった気がする。</p>
+            <p>pa_stream_write()で波形データを書き込むというのは分かっていたのだが、ループでそれを呼び出しまくり、WAVファイルの音楽を再生しようとしてもうまくいかなかった。</p>
+            <p>最初はうまくいっているように見えるのだが、10、20秒程度すると再生が途中で終わってしまう。pa_stream_write()で書き込んでも再生されない。</p>
+            <p>色々試した結果、一言で言うならpa_stream_drain()を呼び出す必要があるという結論に達した。</p>
+            <p>だがしかし、ただ呼び出すだけでは不十分。pa_stream_drain()の処理は非同期に実行されるため、pa_stream_drain()を呼び出し、処理が返ってきたからといって、処理が完了しているわけではないのだ。</p>
+            <p>そこで、pa_stream_drain()を呼び出してから、次にpa_stream_write()を呼び出すまでに、pa_stream_drain()の処理が完了させる必要があり、つまり待機処理が必要になる。</p>
+            <p>具体的には、pa_threaded_mainloop_lock()とpa_threaded_mainloop_unlock()をpa_stream_write()、pa_stream_drain()の前後に入れ、pa_stream_drain()の後にpa_threaded_mainloop_wait()で処理を待機させる。</p>
+            <p>で、pa_stream_drain()の処理が完了…したかは知らないが、正確にはバッファに空きができればいいわけなので、pa_stream_set_write_callback()で、ストリーム書き込み時のコールバック関数設定をあらかじめ行なっておく。そして、そのコールバック関数内でpa_threaded_mainloop_signal()を呼ぶ。</p>
+            <p>というわけで、pa_stream_write()、pa_stream_drain()、pa_threaded_mainloop_wait()と呼び出し、pa_threaded_mainloop_signal()をストリーム書き込み時に呼び出す、という流れになる。</p>
+            <p>しかしながら、これは検証のためにそれなりに適当にやったので、実際にはチェック処理とか入れるべきだと思う。</p>
+            <p>例えば、pa_threaded_mainloop_wait()とかpa_threaded_mainloop_signal()とかは、引数がpa_threaded_mainloop_mainloopのポインタしかない。つまり、ロックが1つしか存在しないため、pa_threaded_mainloop_wait()から処理が復帰した時に、チェック処理を入れ、場合によっては再度待機するとか、そういう風なことをする必要がある。</p>
+            <p>今回の場合は、バッファに空きがあるかどうかが問題なので、pa_stream_writable_size()を呼び出し、書き込めるかどうか確認する必要がある。</p>
+            <p>そもそも、pa_threaded_mainloop_wait()を使わなくても、std::mutexとstd::condition_variableでいいんじゃないか、という気がしないでもない。C++11以前は環境非依存な同期処理がなかったから、用意されたもんだと思うし。C++11の環境非依存同期処理を使える今、わざわざ使う必要もなさそう。</p>
+            <p>pa_threaded_mainloop_lockの処理、見てみたけど、結局pthread_mutex_lock()呼び出してるだけだったわ。waitとかもpthread_cond_wait()呼び出してるだけだった。じゃあいいわC++11のやつで。</p>
+            <p>＊</p>
+            <p>とまぁ、これ調べるのも一苦労だ。サンプルねぇし。audaciousやらvlcやらmplayer2やらのソースを読んだが、今回の問題には大した助けにならなかったし。</p>
+        </div>
+        <hr />
+        <div>
             <h2>2013/07/11 12:46</h2>
             <p>疲れた。</p>
             <p>＊</p>
