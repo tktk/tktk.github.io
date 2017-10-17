@@ -38,6 +38,20 @@
 <!-- ここまで -->
         <hr />
         <div>
+            <h2>2017/10/18 01:00</h2>
+            <p>既存のfg::EventPropertiesManagerはfg::EventPropertiesStackに変更した。</p>
+            <p>＊</p>
+            <p>で、新たにfg::EventPropertiesManagerを追加した。</p>
+            <p>fg::EventPropertiesManagerを介してfg::EventPropertiesStackに対してpush()、pop()を行なう。</p>
+            <p>fg::EventPropertiesManagerを生成した時より浅い階層へのpop()はできないようになっている。</p>
+            <p>また、fg::EventPropertiesManagerを破棄する時、生成した時の階層までpop()するようになっている。</p>
+            <p>自発的なpop()は必要ないかとも思ったけど、そうなるとfg::EventPropertiesManagerを生成しまくることになりそうだし、まぁいいかなって感じで。</p>
+            <p>＊</p>
+            <p>明日からはfg::BasesystemEventPropertiesManagerを追加していく。</p>
+            <p>インタフェースを少し変えて、fg::BasesystemEventPropertiesStackは最終的にsucrose内に内包し、インターフェースからは削除しようと思っている。</p>
+            <p>ゲーム側から見せる必要がなくなりそうなので。</p>
+        <hr />
+        <div>
             <h2>2017/10/13 19:05</h2>
             <p>機能の追加漏れがあった。</p>
             <p>＊</p>
