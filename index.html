@@ -38,6 +38,15 @@
 <!-- ここまで -->
         <hr />
         <div>
+            <h2>2017/10/25 01:50</h2>
+            <p>fg::BasesystemEventPropertiesManagerを追加して、不要になった型や関数の削除も完了。</p>
+            <p>＊</p>
+            <p>ここに来て、ゲーム初期化時にスレッドプールを稼働させていないことが悪影響を及ぼしている。</p>
+            <p>しかし、テストの都合上fg::BasesystemContext生成完了時点ではスレッドプールを稼働させてない方がやりやすいんだよなぁ。</p>
+            <p>まぁ、それ以外に理由がないならfg::BasesystemContext生成時にスレッドプールを稼働させるべきだろうな。</p>
+        </div>
+        <hr />
+        <div>
             <h2>2017/10/18 01:00</h2>
             <p>既存のfg::EventPropertiesManagerはfg::EventPropertiesStackに変更した。</p>
             <p>＊</p>
