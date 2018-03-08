@@ -38,6 +38,30 @@
 <!-- ここまで -->
         <hr />
         <div>
+            <h2>2018/03/08 22:30</h2>
+            <p>fg::Event追加完了。</p>
+            <p>＊</p>
+            <p>次はfg::EventProcsStackViewer、と仮称しているものの追加だ。</p>
+            <p>＊</p>
+            <p>現在の仕様では、fg::EventProcsCallerを生成するためにはfg::EventProcsStackの参照が必要だ。</p>
+            <p>fg::BasesystemEventProcsStackに設定している関数を呼び出すために、fg::BasesystemContextからfg::BasesystemEventProcsStack内にある、fg::EventProcsStackの参照を取得できる。</p>
+            <p>そこまではいいのだが、fg::EventProcsStack自体を参照すると、fg::EventProcsManagerを介してfg::EventProcsをプッシュしたりポップしたり、という操作も可能になってしまう。</p>
+            <p>fg::BasesystemEventProcsStackは、fg::BasesystemEventProcsをプッシュ、あるいはポップするためのものであり、それより機能が少ないfg::EventProcsをプッシュしたりすると、予期しない動作になるのは目に見えている。</p>
+            <p>＊</p>
+            <p>そこで、プッシュ/ポップはfg::EventProcsManagerを介して行ない、関数の呼び出しはfg::EventProcsStackViewerを介して行なう、という風に分けようと考えている。</p>
+            <p>fg::EventProcsStackViewerはfg::EventProcsStackから取得できるようにする。</p>
+            <p>fg::BasesystemContextから取得できるのも、fg::EventProcsStackViewerの参照にすれば、関数の呼び出しは可能なままで、fg::BasesystemEventProcsStackに対するfg::EventProcsのプッシュ/ポップは不可能にできる。</p>
+            <p>＊</p>
+            <p>それを完了しても、既知の問題はもう1つある。</p>
+            <p>が、そっちは今の仕様では解決が難しい気がする。</p>
+            <p>特定状況下でfg::EventProcsCallerを生成するとデッドロックがかかってしまう、という問題だ。</p>
+            <p>もっと言うなら、fg::BasesystemEventProcsStackのプッシュイベント関数内で、といったところか。</p>
+            <p>詳しく確認はしていないのだが、fg::EventProcsCallerの生成時にはfg::BasesystemEventProcsStackのスレッド処理を待機する処理が入っているため、おそらくその関係だと思う。</p>
+            <p>fg::Eventを追加した時に、fg::Eventからfg::EventProcsCallerの参照を取得できるようにしたため、それを利用することで回避はできるのだが、問題のタイミングでfg::EventProcsCallerが生成可能なことは変わっていない。</p>
+            <p>できることなら、問題の起きる記述はできないようにしたいところなのだが。</p>
+        </div>
+        <hr />
+        <div>
             <h2>2018/03/08 04:10</h2>
             <p>またしても想像よりも時間がかかりそうだ。</p>
             <p>＊</p>
