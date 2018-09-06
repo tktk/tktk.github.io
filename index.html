@@ -37,6 +37,21 @@
 <!-- ここまで -->
         <hr />
         <div>
+            <h2>2018/09/07 00:35</h2>
+            <p>明日一杯使っても難しいかもしれない。</p>
+            <p>＊</p>
+            <p>やる気がびみょうというのも大きいけど、sucroseのベースシステムに内包する要素を全て修正する必要があるのがきつい。</p>
+            <p>1つ1つ地道に修正していくしかないが、構成が変化しているため単純な修正で対応できるのかどうか。</p>
+            <p>想定では、今までfg::BasesystemContextの参照を引数に含んでいた関数を、fg::GameContextの参照を引数に含むものも用意することで対応できそうな気がするが。</p>
+            <p>＊</p>
+            <p>今までfg::BasesystemContextの参照を用いていたところを、sucrose::Basesystemの参照に変更する。</p>
+            <p>sucrose::Basesystemの参照はfg::BasesystemContextかfg::GameContextから取得できるので、両方用意しておけば問題ない、といった具合。</p>
+            <p>しかしfg::BasesystemContextの参照を用いる関数は、fgに追加するべきか、sucrose内の仕様に留めるべきか。</p>
+            <p>現状ではどちらでもよい、と言わざるを得ないな。</p>
+            <p>ゲーム側から使用することはまずないことを考えると、sucrose内の仕様に留めておくべきかもしれない。</p>
+        </div>
+        <hr />
+        <div>
             <h2>2018/09/06 00:15</h2>
             <p>candymakerの処理を、candymaker::CoreManagerを使ったものに切り替えた。</p>
             <p>＊</p>
