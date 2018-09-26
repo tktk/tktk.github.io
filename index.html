@@ -37,6 +37,21 @@
 <!-- ここまで -->
         <hr />
         <div>
+            <h2>2018/09/27 04:15</h2>
+            <p>fg::BasesystemEventProcsManagerで発生していた問題を修正した。</p>
+            <p>＊</p>
+            <p>で、次に何をやるというか、そもそも何のためにCoreManagerとか作ったんだっけ、というのが朧げだったので過去の記事見たら書いてあった。</p>
+            <p>zarame…そんなのもあったな…。</p>
+            <p>ゲームから別のゲームを起動する機能については後回しでいい。</p>
+            <p>ベースシステムの独立に当たり、気掛かりなのはbasesystemeventか。</p>
+            <p>ベースシステムから分離はさせたものの、ベースシステムとの繋がりが強すぎる。</p>
+            <p>できることならfg::BasesystemEventProcsとか作らず、全部fg::EventProcsで済ませたいが、それでうまくいきそうな案が出てこない。</p>
+            <p>それができれば、fg::BasesystemEventProcs前提の構成になってるfg::EventProcsの実装をもっと単純にできるのだが。</p>
+            <p>＊</p>
+            <p>とりあえずは、sucroseからベースシステムをzarameとして別のプロジェクトに分離するか。</p>
+        </div>
+        <hr />
+        <div>
             <h2>2018/09/26 03:20</h2>
             <p>candymaker::CoreManagerの追加完了。</p>
             <p>＊</p>
